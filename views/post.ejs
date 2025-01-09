@@ -1,0 +1,31 @@
+<%- include("partials/header") -%>
+<h1><%= title %></h1>
+<p> <%= body %></p>
+<p> By <%= author %></p>
+<!-- Buttons -->
+<button id="showUpdateForm" class="btn btn-primary">Update</button>
+<form id="deleteForm" action="/posts/<%= encodeURIComponent(title) %>?_method=DELETE" method="post" style="display: inline;">
+  <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+<!-- Hidden Update form -->
+<form id="editForm" action="/posts/<%= encodeURIComponent(title) %>?_method=PUT" method="post" style="display: none; margin-top: 10px;">
+  <div class="mb-3">
+    <label for="postTitle" class="form-label">Title</label>
+    <input type="text" class="form-control" id="postTitle" name="postTitle" value="<%= title %>">
+  </div>
+  <div class="mb-3">
+    <label for="postBody" class="form-label">Body</label>
+    <textarea class="form-control" id="postBody" rows="3" name="postBody"><%= body %></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+
+<%- include("partials/footer") -%>
+<script>
+  document.getElementById('showUpdateForm').addEventListener('click', function() {
+    document.getElementById('editForm').style.display = 'block';
+    this.style.display = 'none';
+  });
+</script>
