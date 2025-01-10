@@ -1,13 +1,22 @@
 <%- include("partials/header") -%>
-    <h1>Home</h1>
-    <p> <%= startingContent %> </p>
 
-    <% for(var i = 0; i < posts.length; i++) { %>
-        <h1> <%= posts[i].title %></h1>
-        <p>  <%= posts[i].content.substring(0, 100) %>... <a href="/posts/<%= posts[i].title %>">Read More</a></p>
-    <% } %>
+<div class="container">
+  <div class="jumbotron mt-4">
+    <h1 class="display-4">Welcome to Daily Blog</h1>
+    <p class="lead">Your go-to source for the latest news and updates on a variety of topics. Our team of dedicated writers works tirelessly to bring you insightful articles and engaging content every day. Whether you're interested in technology, health, lifestyle, or more, we've got something for everyone.</p>
+    <hr class="my-4">
+    <p>Stay informed, stay inspired, and stay entertained with Daily Blog. We hope you enjoy reading our posts as much as we enjoy creating them for you.</p>
+  </div>
 
+  <h2 class="my-4">Latest Posts</h2>
 
-
+  <% for(var i = 0; i < posts.length; i++) { %>
+    <div class="post-preview mb-4">
+      <h3> <%= posts[i].title %></h3>
+      <p> <%= posts[i].content.substring(0, 100) %>... <a href="/posts/<%= posts[i].title %>">Read More</a></p>
+    </div>
+    <hr>
+  <% } %>
+</div>
 
 <%- include("partials/footer") -%>

@@ -1,5 +1,5 @@
 
-
+// Importing the libraries
 require("dotenv").config()
 const session = require("express-session");
 const passport = require("passport");
@@ -12,21 +12,20 @@ const findOrCreate = require('mongoose-findorcreate');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 // Load the full build.
 var _ = require('lodash');
-
+//Setting Up database
 const mongoose = require("mongoose");
 
-const homeStartingContent = "Unleash your thoughts, share your stories, and let your creativity flow. This is a space where your words matter. Whether it’s a random thought, a creative idea, or a story you’ve been waiting to share, this is your platform to connect with others and express yourself freely.";
-const aboutContent = "At Daily Blog , we believe everyone has a story to tell, an idea to share, or a thought worth exploring. Our platform is a space where creativity meets community—a place where users can post freely, discover diverse perspectives, and connect with like-minded individuals. Whether you're here to share a random thought, pen a short story, or simply browse what others have to say, Daily Blog is your digital diary and creative canvas rolled into one.";
-const contactContent = "We’d love to hear from you! Whether you have questions, feedback, or just want to say hello, feel free to reach out to us.";
+
 
 const app = express();
+app.use(express.static("public")); 
 
 app.use(methodOverride('_method'));
 
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public")); 
+
 
 
 app.use(session({
@@ -39,7 +38,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-mongoose.connect("mongodb://localhost:27017/blogDB");
+mongoose.connect(process.env.MONGODB_URI);
 
 const userSchema = new mongoose.Schema({
   email: String,
@@ -163,10 +162,10 @@ app.get("/home", function(req, res) {
     Post.find()
       .then((posts) => {
         if (posts.length === 0) {
-          res.render("home" ,{startingContent: homeStartingContent, posts:[]})
+          res.render("home" ,{posts:[]})
         }
         else {
-          res.render("home", {startingContent: homeStartingContent, posts:posts});
+          res.render("home", {posts:posts});
         }
 
       })
@@ -180,11 +179,11 @@ app.get("/home", function(req, res) {
 });
 
 app.get("/about", function(req, res) {
-  res.render("about", {aboutContent: aboutContent});
+  res.render("about");
 });
 
 app.get("/contact", function(req, res) {
-  res.render("contact", {contactContent: contactContent});
+  res.render("contact");
 });
 
 app.get("/compose", function(req, res) {
@@ -267,6 +266,12 @@ app.route("/posts/:postName")
         console.log(err);
       });
     });
+
+app.get("/logout", function(req,res) {
+  req.logout(function() {
+    res.redirect("/");
+  }); 
+});
 
 
 
