@@ -68,7 +68,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: " https://still-forest-93637-d421347bd81e.herokuapp.com/auth/google/secrets",
+      callbackURL: " https://dailyblog-bfb2de1ce07b.herokuapp.com/auth/google/secrets",
     },
     function (accessToken, refreshToken, profile, cb) {
       // Extract the email and displayName
