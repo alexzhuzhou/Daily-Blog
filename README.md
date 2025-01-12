@@ -36,15 +36,3 @@ To run the Daily Blog project on your local machine, you need to have the follow
 - **MongoDB**: [Download MongoDB](https://www.mongodb.com/try/download/community)
 - A **Google Developer Account** for OAuth authentication setup.
 
-### Steps to Run Locally
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/alexzhuzhou/Daily-Blog.git
-2. Navigate to the project directory:
-  ```bash
-     cd Daily-Blog
-3. Install dependencies:
-  ```bash
-    npm install
