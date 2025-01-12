@@ -44,7 +44,7 @@ To run the Daily Blog project on your local machine, you need to have the follow
    git clone https://github.com/alexzhuzhou/Daily-Blog.git
 2. Navigate to the project directory:
   ```bash
-  cd Daily-Blog
-3.Install dependencies:
-```bash
-npm install
+     cd Daily-Blog
+3. Install dependencies:
+  ```bash
+    npm install
